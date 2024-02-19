@@ -1,0 +1,56 @@
+.chat-container {
+    width: 80%;
+    height: 100%;
+    margin: 20px auto;
+}
+
+.chat-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.input-box {
+    margin-top: 10px;
+    text-align: right;
+    /* Căn lề phải */
+}
+
+#message-input {
+    width: 70%;
+    padding: 8px;
+    overflow: auto;
+    overflow-wrap: break-word;
+}
+
+#send-button {
+    width: 28%;
+    padding: 8px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.user-message {
+    text-align: right;
+
+    color: #007bff;
+    padding-left: 30%;
+    word-wrap: break-word;
+
+    width: auto;
+    white-space: break-spaces;
+}
+
+.ai-message {
+    text-align: left;
+    /* Căn lề trái */
+    color: #555;
+    padding-right: 30%;
+    word-wrap: break-word;
+
+    width: auto;
+    white-space: break-spaces;
+}

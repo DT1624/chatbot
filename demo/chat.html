@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <!-- AI's initial message -->
+            <div class="ai-message">How can I help you today?
+            </div>
+        </div>
+        <div class="input-box">
+            <input type="text" id="message-input" placeholder="Type your message..." required>
+            <button id="send-button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var messageInput = document.getElementById('message-input');
+            var message = messageInput.value;
+
+            // Append user's message to the chat box
+            var chatBox = document.getElementById('chat-box');
+            var userMessage = document.createElement('div');
+            userMessage.className = 'user-message';
+            userMessage.textContent = message;
+            chatBox.appendChild(userMessage);
+
+            // Send message to server
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'api.php'); // Thay thế 'your_php_script.php' bằng đường dẫn đến tập tin PHP của bạn
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Append AI's response to the chat box
+                    var aiMessage = document.createElement('div');
+                    aiMessage.className = 'ai-message';
+                    aiMessage.textContent = xhr.responseText; // Sử dụng nội dung trả về từ server
+                    chatBox.appendChild(aiMessage);
+                    // Scroll to the bottom of the chat box after adding messages
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
+            };
+            xhr.send('prompt=' + encodeURIComponent(message)); // Gửi nội dung tin nhắn từ người dùng đến server
+
+            // Clear the message input
+            messageInput.value = '';
+        }
+
+    </script>
+</body>
+
+</html>
